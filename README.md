@@ -1,16 +1,24 @@
-# React + Vite
+# KindSpace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Platform konseling sebaya untuk mahasiswa. Mahasiswa bisa membuat janji dengan konselor sebaya (boleh anonim), dan setiap janji otomatis tercatat dan diberi notifikasi lewat n8n.
 
-Currently, two official plugins are available:
+## Fitur
+- Daftar konselor sebaya dan pencarian berdasarkan topik
+- Login tiga role: mahasiswa, konselor, dan admin
+- Booking janji dengan kode booking, mode anonim atau terbuka
+- Dashboard per role: mahasiswa melihat janjinya, konselor mengelola janji yang masuk, admin mengelola semuanya
+- Mood check-in harian dengan grafik 7 hari
+- Latihan napas 4-7-8 dan tombol bantuan darurat
+- Maskot interaktif bernama Kindy
+- Otomasi n8n: email konfirmasi dan pencatatan ke Google Sheets
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Teknologi
+React, Vite, Tailwind CSS, Supabase (database, autentikasi, RLS), n8n (Docker), Google Sheets, Gmail, Vercel
 
-## React Compiler
+## Menjalankan di lokal
+1. `npm install`
+2. Salin `.env.example` menjadi `.env`, lalu isi nilainya
+3. `npm run dev`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Catatan
+KindSpace adalah teman cerita sebaya, bukan pengganti tenaga profesional. Dalam keadaan darurat, hubungi layanan darurat setempat.
