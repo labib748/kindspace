@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Caveat:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  --color-cream: #FAF7F2;
+  --color-ink: #2A2838;
+  --color-primary: #7B6CF6;
+  --color-primary-soft: #ECE9FE;
+  --color-peach: #FFB59E;
+  --color-peach-soft: #FFEDE6;
+  --color-butter: #FFE9A8;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #FAF7F2;
+    color: #2A2838;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: #FFB59E;
+    color: #2A2838;
+  }
+
+  :focus-visible {
+    outline: 2px solid #7B6CF6;
+    outline-offset: 3px;
+  }
+
+  /* Grain tipis di seluruh halaman, seperti kertas */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  /* Kartu bergaya stiker. Warna bayangan bisa diganti lewat [--sh:#7B6CF6] */
+  .sticker {
+    border: 1.5px solid #2A2838;
+    box-shadow: 4px 4px 0 var(--sh, #2A2838);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .sticker:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--sh, #2A2838);
+  }
+
+  /* Tombol bergaya stiker */
+  .btn-sticker {
+    display: inline-block;
+    border: 1.5px solid #2A2838;
+    box-shadow: 3px 3px 0 #2A2838;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-sticker:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 #2A2838;
+  }
+  .btn-sticker:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #2A2838;
+  }
+
+  /* Selotip */
+  .tape {
+    position: absolute;
+    width: 76px;
+    height: 26px;
+    background: rgba(255, 233, 168, 0.92);
+    border-left: 2px dashed rgba(42, 40, 56, 0.14);
+    border-right: 2px dashed rgba(42, 40, 56, 0.14);
+    box-shadow: 0 1px 2px rgba(42, 40, 56, 0.15);
+  }
+
+  /* Latar titik-titik seperti buku catatan, memudar ke bawah */
+  .dots-fade {
+    background-image: radial-gradient(rgba(42, 40, 56, 0.16) 1.2px, transparent 1.5px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+    mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  }
+
+  /* Pita teks berjalan: satu-satunya gerakan otomatis di Beranda */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 36s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee-dup {
+    display: none;
+  }
+}
